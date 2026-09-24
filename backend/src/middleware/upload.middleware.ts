@@ -35,10 +35,15 @@ const ALLOWED_MIME_TYPES = new Set([
 
 const fileFilter: FileFilter = (_req: Request, file: Express.Multer.File, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();
-  if (file.mimetype === "application/pdf" || file.mimetype === "text/plain" || ext === ".pdf" || ext === ".txt") {
+  if (
+    file.mimetype === "application/pdf" ||
+    file.mimetype === "text/plain" ||
+    ext === ".pdf" ||
+    ext === ".txt"
+  ) {
     cb(null, true);
   } else {
-    cb(new Error("Invalid file type. Only PDF and TXT files are allowed."), true);
+    cb(new Error("Invalid file type. Only PDF and TXT files are allowed."));
   }
 };
 

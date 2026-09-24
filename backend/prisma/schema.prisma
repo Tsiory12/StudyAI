@@ -63,7 +63,7 @@ model Document {
   @@map("documents")
 }
 
-  Quiz {
+model Quiz {
   id          String       @id @default(uuid())
   userId      String
   courseId    String?
