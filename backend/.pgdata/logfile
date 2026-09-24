@@ -1,0 +1,27 @@
+2026-09-24 10:06:54.551 EAT [37881] LOG:  starting PostgreSQL 18.6 (Ubuntu 18.6-0ubuntu0.26.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit
+2026-09-24 10:06:54.552 EAT [37881] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-09-24 10:06:54.556 EAT [37881] FATAL:  could not create lock file "/var/run/postgresql/.s.PGSQL.5432.lock": Permission denied
+2026-09-24 10:06:54.559 EAT [37881] LOG:  database system is shut down
+2026-09-24 10:07:18.649 EAT [38023] LOG:  starting PostgreSQL 18.6 (Ubuntu 18.6-0ubuntu0.26.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit
+2026-09-24 10:07:18.649 EAT [38023] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2026-09-24 10:07:18.651 EAT [38023] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2026-09-24 10:07:18.660 EAT [38029] LOG:  database system was shut down at 2026-09-24 10:06:46 EAT
+2026-09-24 10:07:18.667 EAT [38023] LOG:  database system is ready to accept connections
+2026-09-24 10:07:20.756 EAT [38045] FATAL:  database "akaza" does not exist
+2026-09-24 10:07:20.803 EAT [38047] FATAL:  database "akaza" does not exist
+2026-09-24 10:12:18.759 EAT [38027] LOG:  checkpoint starting: time
+2026-09-24 10:13:57.655 EAT [38027] LOG:  checkpoint complete: wrote 987 buffers (6.0%), wrote 3 SLRU buffers; 1 WAL file(s) added, 0 removed, 0 recycled; write=98.813 s, sync=0.015 s, total=98.897 s; sync files=312, longest=0.002 s, average=0.001 s; distance=4700 kB, estimate=4700 kB; lsn=0/1C02360, redo lsn=0/1C022D0
+2026-09-24 10:16:13.754 EAT [41562] LOG:  could not receive data from client: Connection reset by peer
+2026-09-24 10:16:32.111 EAT [41711] LOG:  could not receive data from client: Connection reset by peer
+2026-09-24 10:16:32.279 EAT [41721] FATAL:  terminating connection due to administrator command
+2026-09-24 10:16:32.381 EAT [38027] LOG:  checkpoint starting: immediate force wait
+2026-09-24 10:16:32.415 EAT [38027] LOG:  checkpoint complete: wrote 47 buffers (0.3%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=0.008 s, sync=0.012 s, total=0.034 s; sync files=41, longest=0.004 s, average=0.001 s; distance=4611 kB, estimate=4691 kB; lsn=0/2083200, redo lsn=0/20831A8
+2026-09-24 10:16:32.713 EAT [41731] FATAL:  terminating connection due to administrator command
+2026-09-24 10:16:32.816 EAT [38027] LOG:  checkpoint starting: immediate force wait
+2026-09-24 10:16:32.833 EAT [38027] LOG:  checkpoint complete: wrote 7 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.004 s, total=0.018 s; sync files=8, longest=0.003 s, average=0.001 s; distance=4401 kB, estimate=4662 kB; lsn=0/24CF7B8, redo lsn=0/24CF760
+2026-09-24 10:16:33.096 EAT [38027] LOG:  checkpoint starting: immediate force wait
+2026-09-24 10:16:33.115 EAT [38027] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.004 s, total=0.019 s; sync files=4, longest=0.003 s, average=0.001 s; distance=4380 kB, estimate=4634 kB; lsn=0/2916B48, redo lsn=0/2916AF0
+2026-09-24 10:16:33.334 EAT [38027] LOG:  checkpoint starting: immediate force wait
+2026-09-24 10:16:33.364 EAT [38027] LOG:  checkpoint complete: wrote 3 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.003 s, total=0.030 s; sync files=4, longest=0.003 s, average=0.001 s; distance=4381 kB, estimate=4609 kB; lsn=0/2D5DFB8, redo lsn=0/2D5DF60
+2026-09-24 10:21:33.465 EAT [38027] LOG:  checkpoint starting: time
+2026-09-24 10:21:45.431 EAT [38027] LOG:  checkpoint complete: wrote 119 buffers (0.7%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=11.945 s, sync=0.009 s, total=11.967 s; sync files=102, longest=0.003 s, average=0.001 s; distance=787 kB, estimate=4227 kB; lsn=0/2E22DA0, redo lsn=0/2E22D10

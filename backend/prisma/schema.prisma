@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = []
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id            String          @id @default(uuid())
+  name          String
+  email         String          @unique
+  passwordHash  String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  courses       Course[]
+  quizzes       Quiz[]
+  quizAttempts  QuizAttempt[]
+  flashcards    Flashcard[]
+  studySessions StudySession[]
+  flashcardReviews FlashcardReview[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model Course {
+  id          String       @id @default(uuid())
+  userId      String
+  title       String
+  description String?
+  subject     String
+  semester    String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents   Document[]
+  quizzes     Quiz[]
+  flashcards  Flashcard[]
+  studySessions StudySession[]
+
+  @@index([userId])
+  @@map("courses")
+}
+
+model Document {
+  id            String     @id @default(uuid())
+  courseId      String
+  name          String
+  originalName  String
+  filePath      String
+  mimeType      String
+  size          Int
+  extractedText String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  course        Course     @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId])
+  @@map("documents")
+}
+
+  Quiz {
+  id          String       @id @default(uuid())
+  userId      String
+  courseId    String?
+  title       String
+  difficulty  Difficulty
+  questionCount Int
+  createdAt   DateTime     @default(now())
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course      Course?      @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  questions   Question[]
+  attempts    QuizAttempt[]
+
+  @@index([userId])
+  @@index([courseId])
+  @@map("quizzes")
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Question {
+  id            String   @id @default(uuid())
+  quizId        String
+  question      String
+  type          QuestionType
+  options       String[]
+  correctAnswer String
+  explanation   String?
+  createdAt     DateTime @default(now())
+  quiz          Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([quizId])
+  @@map("questions")
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+}
+
+model QuizAttempt {
+  id              String    @id @default(uuid())
+  userId          String
+  quizId          String
+  score           Int
+  totalQuestions  Int
+  percentage      Float
+  answers         Json
+  completedAt     DateTime  @default(now())
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz            Quiz      @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([quizId])
+  @@map("quiz_attempts")
+}
+
+model Flashcard {
+  id        String           @id @default(uuid())
+  userId    String
+  courseId  String
+  question  String
+  answer    String
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  reviews   FlashcardReview[]
+
+  @@index([userId])
+  @@index([courseId])
+  @@map("flashcards")
+}
+
+model FlashcardReview {
+  id          String   @id @default(uuid())
+  flashcardId String
+  userId      String
+  status      ReviewStatus
+  reviewedAt  DateTime @default(now())
+  flashcard   Flashcard @relation(fields: [flashcardId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([flashcardId])
+  @@index([userId])
+  @@map("flashcard_reviews")
+}
+
+enum ReviewStatus {
+  AGAIN
+  GOOD
+  EASY
+}
+
+model StudySession {
+  id        String    @id @default(uuid())
+  userId    String
+  courseId  String
+  startedAt DateTime  @default(now())
+  endedAt   DateTime?
+  duration  Int?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course    @relation(fields: [courseId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([courseId])
+  @@map("study_sessions")
+}
